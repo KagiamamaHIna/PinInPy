@@ -1,0 +1,13 @@
+[build-system]
+requires = ["scikit-build-core", "cffi"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "PinInPy"
+version = "1.0.0"
+dependencies = ["cffi"]
+requires-python = ">=3.7"
+
+[tool.scikit-build]
+
+build.verbose = true
