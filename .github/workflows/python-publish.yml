@@ -74,38 +74,36 @@ jobs:
           name: sdist
           path: dist/*.tar.gz
 
-  # publish_to_pypi:
-  #   name: Publish package to PyPI
-  #   # 必须等待所有构建任务成功完成
-  #   needs: [build_sdist]
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     id-token: write  # 这是必须的，允许 workflow 向 PyPI 进行身份验证
-  #     contents: read
+  publish_to_pypi:
+    name: Publish package to PyPI
+    # 必须等待所有构建任务成功完成
+    needs: [build_sdist]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # 这是必须的，允许 workflow 向 PyPI 进行身份验证
+      contents: read
 
-  #   steps:
-  #     # 【关键步骤 2】: 下载所有之前上传的工件
-  #     # 首先下载所有 wheel 文件到一个临时目录
-  #     - name: Download all wheels
-  #       uses: actions/download-artifact@v6
-  #       with:
-  #         # 使用通配符匹配所有以 cibw-wheels- 开头的工件
-  #         pattern: cibw-wheels-*
-  #         # 将它们合并到同一个目录下
-  #         merge-multiple: true
-  #         # 指定下载到 dist 目录
-  #         path: dist/
+    steps:
+      # 【关键步骤 2】: 下载所有之前上传的工件
+      # 首先下载所有 wheel 文件到一个临时目录
+      - name: Download all wheels
+        uses: actions/download-artifact@v6
+        with:
+          # 使用通配符匹配所有以 cibw-wheels- 开头的工件
+          pattern: cibw-wheels-*
+          # 将它们合并到同一个目录下
+          merge-multiple: true
+          # 指定下载到 dist 目录
+          path: dist/
       
-  #     # 接着下载源码包
-  #     - name: Download sdist
-  #       uses: actions/download-artifact@v6
-  #       with:
-  #         name: sdist
-  #         path: dist/
+      # 接着下载源码包
+      - name: Download sdist
+        uses: actions/download-artifact@v6
+        with:
+          name: sdist
+          path: dist/
 
-  #     # 现在，dist/ 目录里已经包含了所有的 .whl 和 .tar.gz 文件
-  #     # 最后执行发布
-  #     - name: Publish package distributions to TestPyPI
-  #       uses: pypa/gh-action-pypi-publish@release/v1
-  #       with:
-  #         repository-url: https://test.pypi.org/legacy/
+      # 现在，dist/ 目录里已经包含了所有的 .whl 和 .tar.gz 文件
+      # 最后执行发布
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
