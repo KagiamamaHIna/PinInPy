@@ -77,7 +77,7 @@ jobs:
   publish_to_pypi:
     name: Publish package to PyPI
     # 必须等待所有构建任务成功完成
-    needs: [build_sdist]
+    needs: [release-build, build_sdist]
     runs-on: ubuntu-latest
     permissions:
       id-token: write  # 这是必须的，允许 workflow 向 PyPI 进行身份验证

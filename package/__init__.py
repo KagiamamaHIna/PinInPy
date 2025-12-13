@@ -6,7 +6,7 @@ _pffi = ffi
 
 ffi = cffi.FFI()
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __all__ = ["PinIn", "TreeSearcher", "Logic", "Keyboard", "PinInConfig", "DeserializeException", "PinInInitException", "TreeSearcherInitException"]
 
 def _create_pinin(handle):
