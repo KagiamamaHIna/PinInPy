@@ -24,6 +24,10 @@ jobs:
       matrix:
         # scikit-build-core 完美支持这三大平台
         os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    permissions:
+      id-token: write  # 这是必须的，允许 workflow 向 PyPI 进行身份验证
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
