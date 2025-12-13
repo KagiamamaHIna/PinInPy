@@ -4,16 +4,14 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "PinInPy"
-version = "1.0.1"
+version = "1.0.0"
 dependencies = ["cffi"]
 requires-python = ">=3.8"
 authors = [
     { name = "SajoYukimi", email = "kagiyamahino@gmail.com" },
 ]
 description = "Python library for Pinyin searching"
-
-
-dynamic = ["readme"]
+readme = "README.md"
 
 # --- PyPI 搜索和分类信息 ---
 # 帮助用户在 PyPI 上搜索到你的项目的关键词
@@ -44,10 +42,6 @@ classifiers = [
 Homepage = "https://github.com/KagiamamaHIna/PinInPy"
 "Bug Tracker" = "https://github.com/KagiamamaHIna/PinInPy/issues"
 Source = "https://github.com/KagiamamaHIna/PinInPy"
-
-[tool.setuptools.dynamic]
-# 关键：读取 README.md 文件，并告诉 PyPI 它是 Markdown 格式
-readme = { file = ["README.md"], content-type = "text/markdown" }
 
 [tool.cibuildwheel]
 build = "cp3*"
