@@ -18,11 +18,11 @@ pip install PinInPy
 ```
 
 ## 示例
-**注意**：字典文件(pinyin.txt)，需要自行准备，也可以从[pinyin-data](https://github.com/mozillazg/pinyin-data)中下载直接使用
+**注意**：拼音字典文件(pinyin.txt)，需要自行准备，也可以从[pinyin-data](https://github.com/mozillazg/pinyin-data)中下载直接使用
 
 ```python
 import PinInPy
-# BEGIN是前缀匹配，也就是要根据从字符串开头开始匹配
+# BEGIN是前缀匹配，也就是根据字符串开头开始匹配
 tree = PinInPy.TreeSearcher(PinInPy.Logic.BEGIN, "pinyin.txt")
 tree.put_string("佐城雪美")
 tree.put_string("游佐梢")
@@ -41,12 +41,19 @@ pinin.get_config().set_keyboard(PinInPy.Keyboard.MICROSOFT).commit()# 设置键�
 print(tree.execute_search("ybzouk"))# 打印: ["游佐梢"]
 
 # 可以根据已有的PinIn对象去构造新的搜索树，PinIn上的配置是会被共享的 CONTAIN是部分匹配，部分匹配则是可以从任意位置开始匹配
+# 通常部分匹配的性能更差
 tree2 = PinInPy.TreeSearcher(PinInPy.Logic.CONTAIN, pinin)
 tree2.put_string("佐城雪美")
 tree2.put_string("游佐梢")
 tree2.put_string("市原仁奈")
+tree2.put_string("serika")
 # r f(en) n l(ai) == ren nai
 print(tree2.execute_search("rfnl"))# 因为是部分匹配，所以后面会被匹配仁奈 打印: ["市原仁奈"]
-# 注意！ 双拼是成对匹配的，如果只有奇数个拼音音素输入则不会匹配任何东西
-print(tree2.execute_search("r"))# 打印: []
+# 注意！ 双拼是成对匹配的，如果只有奇数个拼音音素输入则不会匹配任何中文
+print(tree2.execute_search("r"))# 打印: ["serika"]
 ```
+## 注意事项
+不包含PinIn4Cpp中的ParallelSearch，拼音格式化功能，Keyboard自定义（只能使用预设），从内存中加载字典文件，二进制序列化文件的功能
+PinIn类也不暴露拼音获取功能
+
+理论上是平台无关的，但是GitHub Actions只构建了Linux，Windows，MacOS的Wheel包，如果你的平台不包含这些平台的话可以自行尝试下载源代码，配置CMake，配置C/C++编译器，用```pip install .```安装
