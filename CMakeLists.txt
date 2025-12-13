@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 project(PinInPy LANGUAGES C CXX)
 
 if(MSVC)
@@ -8,7 +9,7 @@ endif()
 set(PININ4CPP_INSTALL OFF CACHE INTERNAL "")
 add_subdirectory("PinIn4Cpp")
 
-find_package(Python3 COMPONENTS Interpreter Development.Module REQUIRED)
+find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 
 set(PY_BINDING_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
@@ -23,10 +24,10 @@ add_custom_command(
 )
 
 # Python编译模块
-python3_add_library(_pinin4cpp_cffi MODULE ${GENERATED_C})
+python_add_library(_pinin4cpp_cffi MODULE ${GENERATED_C})
 
 target_link_libraries(_pinin4cpp_cffi PRIVATE PinIn4Cpp::PinIn4Cpp)
-target_link_libraries(_pinin4cpp_cffi PRIVATE Python3::Module)
+target_link_libraries(_pinin4cpp_cffi PRIVATE Python::Module)
 
 install(TARGETS _pinin4cpp_cffi DESTINATION PinInPy)
 install(FILES PinIn4Cpp/LICENSE DESTINATION PinInPy/PinIn4Cpp)
