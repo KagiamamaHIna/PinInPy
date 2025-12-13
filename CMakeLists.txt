@@ -11,11 +11,10 @@ add_subdirectory("PinIn4Cpp")
 
 find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 if(MSVC)
+    #之前测试的时候发现win会找不到python3.lib，这个可以强制指定他找libs文件夹，里面有对应的python3.lib
     if(Python_LIBRARIES)
-        # 从完整的文件路径中提取出目录路径
         get_filename_component(PYTHON_LIB_DIR "${Python_LIBRARIES}" DIRECTORY)
 
-        # 将此目录添加到链接器的搜索列表
         link_directories(${PYTHON_LIB_DIR})
         message(STATUS "Python Library Dir: ${PYTHON_LIB_DIR}")
     endif()

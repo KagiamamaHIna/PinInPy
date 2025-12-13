@@ -6,7 +6,48 @@ build-backend = "scikit_build_core.build"
 name = "PinInPy"
 version = "1.0.0"
 dependencies = ["cffi"]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
+authors = [
+    { name = "SajoYukimi", email = "kagiyamahino@gmail.com" },
+]
+description = "Python library for Pinyin searching"
+
+
+dynamic = ["readme"]
+
+# --- PyPI 搜索和分类信息 ---
+# 帮助用户在 PyPI 上搜索到你的项目的关键词
+keywords = ["PinIn", "pinyin match", "pinyin", "cffi"]
+license = { text = "MIT" }
+# PyPI 分类器，非常重要！能让用户通过分类筛选找到你的包
+# 完整的分类器列表: https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 4 - Beta", # 3 - Alpha, 4 - Beta, 5 - Production/Stable
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: C++",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/KagiamamaHIna/PinInPy"
+"Bug Tracker" = "https://github.com/KagiamamaHIna/PinInPy/issues"
+Source = "ttps://github.com/KagiamamaHIna/PinInPy"
+
+[tool.setuptools.dynamic]
+# 关键：读取 README.md 文件，并告诉 PyPI 它是 Markdown 格式
+readme = { file = ["README.md"], content-type = "text/markdown" }
 
 [tool.cibuildwheel]
 build = "cp3*"
