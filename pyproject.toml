@@ -43,7 +43,7 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/KagiamamaHIna/PinInPy"
 "Bug Tracker" = "https://github.com/KagiamamaHIna/PinInPy/issues"
-Source = "ttps://github.com/KagiamamaHIna/PinInPy"
+Source = "https://github.com/KagiamamaHIna/PinInPy"
 
 [tool.setuptools.dynamic]
 # 关键：读取 README.md 文件，并告诉 PyPI 它是 Markdown 格式

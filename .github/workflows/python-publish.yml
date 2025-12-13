@@ -23,7 +23,7 @@ jobs:
       fail-fast: false
       matrix:
         # scikit-build-core 完美支持这三大平台
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ macos-latest] # ubuntu-latest, windows-latest,
 
     steps:
       - uses: actions/checkout@v4
