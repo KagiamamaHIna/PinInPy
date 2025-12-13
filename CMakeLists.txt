@@ -36,6 +36,7 @@ if(MSVC)
 
         # 将此目录添加到链接器的搜索列表
         link_directories(${PYTHON_LIB_DIR})
+        message(STATUS "Python Library Dir: ${PYTHON_LIB_DIR}")
     endif()
 endif()
 
