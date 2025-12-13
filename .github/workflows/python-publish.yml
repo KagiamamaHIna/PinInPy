@@ -36,34 +36,12 @@ jobs:
           
       - name: Install generic dependencies
         run: pip install cmake ninja
-        
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.3.0
         env:
           CIBW_BUILD_VERBOSITY: "TRUE"
           -DBUILD_SHARED_LIBS=ON: "ON"
-          CIBW_ENVIRONMENT: >
-            CCACHE_DIR={project}/.ccache
-            CCACHE_MAXSIZE=500M
-            CCACHE_COMPRESS=1
-            PATH=/usr/lib/ccache:$PATH
-
-      # --- 缓存 ccache 的目录 ---
-      - name: Cache ccache
-        uses: actions/cache@v4
-        with:
-          path: .ccache
-          key: ${{ runner.os }}-ccache-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-
 
       - uses: actions/upload-artifact@v4
         with:
