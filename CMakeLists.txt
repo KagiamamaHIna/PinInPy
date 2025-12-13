@@ -11,6 +11,9 @@ add_subdirectory("PinIn4Cpp")
 
 find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 
+message(STATUS "Python Library: ${Python_LIBRARIES}")
+message(STATUS "Python Include: ${Python_INCLUDE_DIRS}")
+
 set(PY_BINDING_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
 # 生成 CFFI 胶水代码 (.c)
