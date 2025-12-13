@@ -4,13 +4,6 @@ project(PinInPy LANGUAGES C CXX)
 
 if(MSVC)
     add_compile_options(/utf-8)
-    if(Python_LIBRARIES)
-        # 从完整的文件路径中提取出目录路径
-        get_filename_component(PYTHON_LIB_DIR "${Python_LIBRARIES}" DIRECTORY)
-
-        # 将此目录添加到链接器的搜索列表
-        link_directories(${PYTHON_LIB_DIR})
-    endif()
 endif()
 
 set(PININ4CPP_INSTALL OFF CACHE INTERNAL "")
@@ -35,6 +28,16 @@ add_custom_command(
 
 # Python编译模块
 python_add_library(_pinin4cpp_cffi MODULE ${GENERATED_C})
+
+if(MSVC)
+    if(Python_LIBRARIES)
+        # 从完整的文件路径中提取出目录路径
+        get_filename_component(PYTHON_LIB_DIR "${Python_LIBRARIES}" DIRECTORY)
+
+        # 将此目录添加到链接器的搜索列表
+        link_directories(${PYTHON_LIB_DIR})
+    endif()
+endif()
 
 target_link_libraries(_pinin4cpp_cffi PRIVATE PinIn4Cpp::PinIn4Cpp)
 target_link_libraries(_pinin4cpp_cffi PRIVATE Python::Module)
