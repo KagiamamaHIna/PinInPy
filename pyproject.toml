@@ -9,4 +9,4 @@ dependencies = ["cffi"]
 requires-python = ">=3.7"
 
 [tool.scikit-build]
-
+wheel.py-api = "abi3"
