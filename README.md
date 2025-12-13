@@ -53,7 +53,7 @@ print(tree2.execute_search("rfnl"))# 因为是部分匹配，所以后面会被�
 print(tree2.execute_search("r"))# 打印: ["serika"]
 ```
 ## 注意事项
-不包含PinIn4Cpp中的ParallelSearch，拼音格式化功能，Keyboard自定义（只能使用预设），从内存中加载字典文件，二进制序列化文件的功能
+不包含PinIn4Cpp中的ParallelSearch，拼音格式化功能，Keyboard自定义（只能使用预设），从内存中加载字典文件，从内存中加载二进制序列化文件的功能
 PinIn类也不暴露拼音获取功能
 
 理论上是平台无关的，但是GitHub Actions只构建了Linux，Windows，MacOS的Wheel包，如果你的目标平台不是其中之一的话可以自行尝试下载源代码，配置CMake，配置C/C++编译器，用```pip install .```安装
