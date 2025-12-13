@@ -27,6 +27,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive 
 
       - uses: actions/setup-python@v5
         with:
@@ -37,13 +39,8 @@ jobs:
         
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.16.5
-        # 所有的配置都会自动从 pyproject.toml 读取
-        # 如果需要给 CMake 传特殊参数，可以通过环境变量注入
         env:
-          # 比如开启详细日志
-          SKBUILD_CMAKE_VERBOSE: "TRUE"
-          # 比如传递 C++ 标准
-          SKBUILD_CMAKE_ARGS: "-DCMAKE_CXX_STANDARD=17"
+          CIBW_BUILD_VERBOSITY: "TRUE"
 
       - uses: actions/upload-artifact@v4
         with:
