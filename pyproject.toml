@@ -8,4 +8,7 @@ version = "1.0.0"
 dependencies = ["cffi"]
 requires-python = ">=3.7"
 
+[tool.cibuildwheel]
+build = "cp3*"
+
 [tool.scikit-build]
