@@ -24,7 +24,7 @@ add_custom_command(
 )
 
 # Python编译模块
-python_add_library(_pinin4cpp_cffi MODULE ${GENERATED_C})
+add_library(_pinin4cpp_cffi MODULE ${GENERATED_C})
 
 target_link_libraries(_pinin4cpp_cffi PRIVATE PinIn4Cpp::PinIn4Cpp)
 target_link_libraries(_pinin4cpp_cffi PRIVATE Python::Module)
