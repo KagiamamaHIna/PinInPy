@@ -15,7 +15,7 @@ readme = "README.md"
 
 
 keywords = ["PinIn", "pinyin match", "pinyin", "cffi"]
-license = "MIT"
+license = { text = "MIT" }
 
 # 完整的分类器列表: https://pypi.org/classifiers/
 classifiers = [
