@@ -1,12 +1,10 @@
 from ._pinin4cpp_cffi import lib,ffi
 from enum import IntEnum
-import cffi
+from typing import Union
 
 _pffi = ffi
 
-ffi = cffi.FFI()
-
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __all__ = ["PinIn", "TreeSearcher", "Logic", "Keyboard", "PinInConfig", "DeserializeException", "PinInInitException", "TreeSearcherInitException"]
 
 def _create_pinin(handle):
@@ -255,7 +253,7 @@ class PinIn:
 class TreeSearcher:
     '''用于搜索的搜索树'''
     cdata = None
-    def __init__(self, logic:Logic, PathOrPinIn:str|PinIn):
+    def __init__(self, logic:Logic, PathOrPinIn:Union[str, PinIn]):
         temp_handle = None
         if type(PathOrPinIn) == str:
             temp_handle = lib.PinInCpp_TreeSearcher_NewPath(logic, PathOrPinIn.encode("utf-8"))
